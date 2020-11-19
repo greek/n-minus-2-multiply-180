@@ -8,14 +8,13 @@ int main() {
 
   // Example: 4 - 2 = 2 * 180 = 360
 
-  // Should we use uint?
-  uint i;
-  uint* ptr = &i;
+  unsigned int i;
+  unsigned int* ptr = &i;
 
   std::cout << "Input your number: ";
   std::cin >> i;
+  
   *ptr = i - 2;
-  // just return 180 if res = 180 or -180
   int res = i * 180; 
 
   std::cout << "Your final value is " << res << std::endl;
