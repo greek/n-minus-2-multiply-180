@@ -9,7 +9,7 @@
 
 int main() {
 
-#if __linux__
+#ifdef __linux__
   using namespace std::this_thread;
   using namespace std::chrono;
 #endif
@@ -21,21 +21,22 @@ int main() {
 
   // Example: 4 - 2 = 2 * 180 = 360
 
-  unsigned int i;
-  unsigned int *ptr = &i;
+  const int kWait = 750;
+  int i;
+  int* ptr = &i;
 
   std::cout << "Input your number: ";
   std::cin >> i;
 
   *ptr = i - 2;
-  unsigned int res = i * 180;
+  int res = i * 180;
 
   std::cout << "Hmm, we get.. " << *ptr << ". multiply that by 180!" << std::endl;
   
 #ifdef _WIN32
-  Sleep(1000); 
+  Sleep(kWait); 
 #else
-  sleep_for(seconds(1));
+  sleep_for(milliseconds(kWait));
 #endif // endif _WIN32  
 
   std::cout << "Your final value is " << res << std::endl;
