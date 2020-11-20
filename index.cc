@@ -31,12 +31,16 @@ int main() {
   unsigned int res = i * 180;
 
   std::cout << "Hmm, we get.. " << *ptr << ". multiply that by 180!" << std::endl;
+  
 #ifdef _WIN32
   Sleep(1000); 
-  std::cout << "Your final value is " << res << std::endl;
 #else
   sleep_for(seconds(1));
 #endif // endif _WIN32  
+
   std::cout << "Your final value is " << res << std::endl;
-  return 0;
+  
+#ifdef _WIN32  
+  system("pause"); // ohh nahh i'm down bad 
+#endif // endif _WIN32
 }
