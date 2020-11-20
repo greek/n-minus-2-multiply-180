@@ -12,24 +12,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Setup Bazel
-      uses: abhinavsingh/setup-bazel@v3
-      with:
-        # Bazel version to install e.g. 1.2.1, 2.0.0, ...
-        version: 2.0.0 # optional, default is 2.0.0
     - name: install mingw-w64
       run: sudo apt-get install mingw-w64
-    - name: make
-      run: make
+    - name: make linux bin # not actual make
+      run: g++ -o formula index.cc
     - name: make win
       run: make win
       
-    - name: Upload a Build Artifact
+    - name: upload linux artifact
       uses: actions/upload-artifact@v2.2.1
       with:
-        # Artifact name
-        name: formula # optional, default is artifact
-        # A file, directory or wildcard pattern that describes what to upload
-        path: ./bazel-bin/formula
-        # The desired behavior if no files are found using the provided path.
+        name: formula 
+        path: ./formula
+        
+    - name: upload win artifact
+      uses: actions/upload-artifact@v2.2.1
+      with:
+        name: formula-win
+        path: ./lol.exe
