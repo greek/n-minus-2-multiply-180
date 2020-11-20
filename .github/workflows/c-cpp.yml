@@ -12,6 +12,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - uses: actions/checkout@v2
     - name: install mingw-w64
       run: sudo apt-get install mingw-w64
     - name: make linux bin # not actual make
