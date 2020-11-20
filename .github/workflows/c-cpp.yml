@@ -24,3 +24,19 @@ jobs:
       run: make
     - name: make win
       run: make win
+    - name: Upload windows binary
+    - uses: actions/upload-artifact@v2.2.1
+      with:
+        # Artifact name
+        name: win-artifact # optional, default is artifact
+        # A file, directory or wildcard pattern that describes what to upload
+        path: ./lol.exe
+        # The desired behavior if no files are found using the provided path.
+    - name: Upload binary
+    - uses: actions/upload-artifact@v2.2.1
+      with:
+        # Artifact name
+        name: artifact # optional, default is artifact
+        # A file, directory or wildcard pattern that describes what to upload
+        path: ./bazel-bin/formula
+        # The desired behavior if no files are found using the provided path. 
