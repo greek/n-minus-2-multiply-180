@@ -10,5 +10,5 @@ build:
 	bazel build //:formula
 
 win:
-	x86_64-w64-mingw32-g++ -o lol.exe index.cc 
+	x86_64-w64-mingw32-g++ -static-libgcc -static-libstdc++ -o lol.exe index.cc 
 
