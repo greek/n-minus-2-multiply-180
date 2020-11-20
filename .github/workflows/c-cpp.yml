@@ -15,7 +15,7 @@ jobs:
     - name: install mingw-w64
       run: sudo apt-get install mingw-w64
     - name: make linux bin # not actual make
-      run: g++ -o formula index.cc
+      run: g++ -o formula ./index.cc
     - name: make win
       run: make win
       
