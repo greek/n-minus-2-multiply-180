@@ -12,8 +12,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: install mingw-w64
-        run: sudo apt-get install mingw-w64
       - name: make linux bin # not actual make
         run: make build-gpp
 
@@ -27,6 +25,7 @@ jobs:
     runs-on: windows-latest
 
     steps:
+     - uses: actions/checkout@v2    
      - name: Setup Bazel
        uses: abhinavsingh/setup-bazel@v3
        with:
@@ -35,3 +34,9 @@ jobs:
           
      - name: bazel build formula
        run: bazel build //:formula
+       
+     - name: upload win artifact
+       uses: actions/upload-artifact@v2.2.1
+       with:
+        name: formula
+        path: .\bazel-bin\formula.exe
