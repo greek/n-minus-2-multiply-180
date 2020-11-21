@@ -8,11 +8,8 @@
 #endif // endif _WIN32
 
 int main() {
-
-#ifdef __linux__
   using namespace std::this_thread;
   using namespace std::chrono;
-#endif
 
   // Formula: 180(n - 2)
   // Take all your sides and subtract them by two. The numbers
@@ -32,13 +29,8 @@ int main() {
   int res = i * 180;
 
   std::cout << "Hmm, we get.. " << *ptr << ". multiply that by 180!" << std::endl;
-  
-#ifdef _WIN32
-  Sleep(kWait); 
-#else
-  sleep_for(milliseconds(kWait));
-#endif // endif _WIN32  
 
+  sleep_for(milliseconds(kWait));
   std::cout << "Your final value is " << res << std::endl;
   
 #ifdef _WIN32  

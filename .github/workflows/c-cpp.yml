@@ -2,32 +2,36 @@ name: C/C++ CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
-    branches: [ master ]
+    branches: [master]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: install mingw-w64
-      run: sudo apt-get install mingw-w64
-    - name: make linux bin # not actual make
-      run: make build-gpp
-    - name: make win
-      run: make win
-      
-    - name: upload linux artifact
-      uses: actions/upload-artifact@v2.2.1
-      with:
-        name: formula 
-        path: ./formula
-        
-    - name: upload win artifact
-      uses: actions/upload-artifact@v2.2.1
-      with:
-        name: formula-win
-        path: ./lol.exe
+      - uses: actions/checkout@v2
+      - name: make linux bin # not actual make
+        run: make build-gpp
+
+      - name: upload linux artifact
+        uses: actions/upload-artifact@v2.2.1
+        with:
+          name: formula
+          path: ./formula
+
+  win-build:
+    runs-on: windows-latest
+
+    steps:
+     - uses: actions/checkout@v2  
+     - uses: ilammy/msvc-dev-cmd@v1  
+     - name: cl build
+       run: cl /EHsc index.cc
+       
+     - name: upload win artifact
+       uses: actions/upload-artifact@v2.2.1
+       with:
+        name: formula
+        path: .\index.exe
