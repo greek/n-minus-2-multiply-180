@@ -26,17 +26,11 @@ jobs:
 
     steps:
      - uses: actions/checkout@v2    
-     - name: Setup Bazel
-       uses: abhinavsingh/setup-bazel@v3
-       with:
-         version: 2.0.0
-         uses: ngalaiko/bazel-action@2.0.0
-          
-     - name: bazel build formula
-       run: bazel build //:formula
+     - name: cl build
+       run: cl /EHsc index.cc
        
      - name: upload win artifact
        uses: actions/upload-artifact@v2.2.1
        with:
         name: formula
-        path: .\bazel-bin\formula.exe
+        path: .\index.exe
